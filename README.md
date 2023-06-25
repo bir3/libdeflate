@@ -3,7 +3,7 @@
 
 ```
 # embeds libdeflate version 1.18
-go get github.com/bir3/libdeflate@v0.1.118
+go get github.com/bir3/libdeflate@v0.2.118
 ```
 
 # Acknowledgments
