@@ -12,13 +12,10 @@ The code was taken from https://github.com/grailbio/base/compress/libdeflate
 and the libdeflate library updated.
 
 Modifications:
-- A build constraint for arm64 was removed.  The code runs fine on apple m1 (arm64).
-- Fallback to stdlib gzip/zlib/deflate removed if compiling without cgo to prevent slow codepath.  
-- added `actualDecompressor.Multistream(false)` to align both implementations
+- A build constraint for arm64 was removed.  The code runs fine on apple m1 (arm64)
+- Avoid accidentially using slow stdlib gzip/zlib/deflate.  Now needs explict build tag `disable_libdefldate`
+- added `actualDecompressor.Multistream(false)` to align libdeflate and stdlib wrappers
 
-https://github.com/ebiggers/libdeflate
-https://github.com/grailbio/base/compress/libdeflate `@ 0d762ae / 2023-04-14`
-
-disable_libdeflate
-= message "libdeflate disabled - performance will suffer"
+- https://github.com/ebiggers/libdeflate
+- https://github.com/grailbio/base/compress/libdeflate `@ 0d762ae / 2023-04-14`
 
