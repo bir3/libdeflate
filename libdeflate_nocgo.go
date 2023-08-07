@@ -2,8 +2,8 @@
 // Use of this source code is governed by the Apache-2.0
 // license that can be found in the LICENSE file.
 
-//go:build disable_libdeflate
-// +build disable_libdeflate
+//go:build use_slow_gzip
+// +build use_slow_gzip
 
 package libdeflate
 
@@ -22,6 +22,10 @@ import (
 
 func init() {
 	fmt.Fprintf(os.Stderr, "WARNING: libdeflate disabled - slow gzip decompression\n")
+}
+
+func need_build_tags_use_slow_gzip() {
+   // example: go build -tags use_slow_gzip
 }
 
 type Decompressor struct{}
