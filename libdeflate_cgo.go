@@ -8,13 +8,14 @@
 package libdeflate
 
 /*
-#include "libdeflate.h"
+#include "lib/libdeflate.h"
 */
 import "C"
 
 import (
 	"fmt"
 	"unsafe"
+        _ "github.com/bir3/libdeflate/lib"
 )
 
 // Decompressor is a minimal interface to libdeflate's decompressor object.  It
