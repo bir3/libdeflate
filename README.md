@@ -49,7 +49,7 @@ and the [libdeflate](https://github.com/ebiggers/libdeflate) library updated.
 
 Modifications:
 - A build constraint for arm64 was removed.  The code runs fine on apple m1 (arm64)
-- Avoid accidentially using slow stdlib gzip/zlib/deflate.  Now needs explict build tag `disable_libdefldate`
+- Avoid accidentally using slow stdlib gzip/zlib/deflate.  Now needs explict build tag `use_slow_gzip`
 - added `actualDecompressor.Multistream(false)` to align libdeflate and stdlib wrappers
 
 ## code embedded/derived from:
