@@ -2,8 +2,8 @@
 # Go bindings for libdeflate 
 
 ```
-# embeds libdeflate version 1.18
-go get github.com/bir3/libdeflate@v0.2.118
+# embeds libdeflate version 1.19
+go get github.com/bir3/libdeflate@v0.4.119
 ```
 
 # Example
