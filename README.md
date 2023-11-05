@@ -43,7 +43,8 @@ func main() {
 
 # Performance, decompress
 
-70 MB bgzf compressed file : https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/clinvar.vcf.gz
+900 MB compressed down to 70 MB with bgzip (block gzip) : https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/clinvar.vcf.gz
+
 
 ```
 # Apple MacBook Air, M1 2020
