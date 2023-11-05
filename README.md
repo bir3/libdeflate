@@ -41,6 +41,15 @@ func main() {
 
 ```
 
+# Performance, decompress
+
+70 MB bgzf compressed file : https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/clinvar.vcf.gz
+
+```
+# Apple MacBook Air, M1 2020
+BenchmarkClinvarDecompress-8   	       4	 324893812 ns/op #  0.325 sec  2790.0 MB/sec libdeflate
+BenchmarkClinvarDecompress-8   	       1	1419902917 ns/op #  1.420 sec   638.4 MB/sec stdlib
+```
 
 # Acknowledgments
 
