@@ -1,6 +1,7 @@
 package libdeflate
 
 import (
+	"crypto/md5"
 	"encoding/binary"
 	"fmt"
 	"os"
@@ -124,19 +125,23 @@ func BenchmarkClinvarDecompress(b *testing.B) {
 	if g.bgzfData == nil {
 		b.Fatalf("env DATA not set - need bgzf file")
 	}
+
 	for i := 0; i < b.N; i++ {
+
 		//b.Log("AAAA")
 		//b.Logf("g.out = %d", len(g.out))
 		data := g.bgzfData
 		offset := 0
 		n := 0
+		k := 0
 		for len(data) > offset {
-			nx, err := g.dc.GzipDecompress(g.out, data[offset:])
+			nx, err := g.dc.GzipDecompress(g.out[n:], data[offset:])
 			if err != nil {
 				b.Fatalf("decompress failed - %s", err)
 			}
 			offset += BGZF_bsize(data[offset:])
 			n += nx
+			k++
 		}
 		if n < 700*1e6 || n > 1500*1e6 {
 			b.Fatalf("unexpected output size %d MB - %d bytes", n/1e6, n)
@@ -144,5 +149,15 @@ func BenchmarkClinvarDecompress(b *testing.B) {
 		if n > len(g.out)/2 {
 			b.Fatalf("output buffer too small")
 		}
+
+		b.SetBytes(int64(n))
+
+		if os.Getenv("DATA_MD5") != "" {
+			b.Logf("md5 verify: %x", md5.Sum(g.out[0:n]))
+			if os.Getenv("DATA_MD5") != fmt.Sprintf("%x", md5.Sum(g.out[0:n])) {
+				b.Fatalf("md5 verify failed")
+			}
+		}
+		//b.ReportMetric(n float64, unit string)
 	}
 }
